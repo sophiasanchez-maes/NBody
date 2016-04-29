@@ -1,0 +1,39 @@
+/* Update position, velocities for each particle */ /* guess this pseudocode means we are calling repeatedly as opposed to looping within the function. ok */ 
+void updateParticles(int ngrid, int npart, double a, double da, double *x, double *y, double *z, double *vx, double *vy, double *vz, double ***phi)
+{ 
+
+/* 1. declarations of relevant variables */ 
+/* 2. calculate particle accelerations from phi */ 
+//this will give me a 3 d matrix with all the accelerations of the cells. The structure of this matrix, which I will call g has i j and k components like before. Might have 3 for x, y, z? Ask Darryl. just to be safe, let’s pretend that. 
+//the stuff that came before 
+
+
+
+
+
+// for the cic interpolation, acceleration is calculated by method on page 14, bottom. 
+// acceleration of a particle is just the acceleration of its parent cell g ijk 
+
+gxp = gx[i][j][k] * tx * ty * tz + gx[i+1][j][k] * dx * ty * tz + gx[i][j+1][k] * tx * dy * tz + gx[i+1][j+1][k] * dx * dy * tz + 
+	gx[i][j][k+1] * tx * ty * dz + gx[i+1][j][k+1] * dx * ty * dz + gx[i][j+1][k+1] * tx * dy * dz + gx[i+1][j+1][k+1] * dx * dy * dz; 
+
+/* same now for y and z! each one of these arrays called gy gz, etc. has ngrid by ngrid by ngrid dimensions. Think about adding a 4th dimension for x, y, z component for each cell in 3 space? This will save memory in the structure */ 
+
+gyp = gy[i][j][k] * tx * ty * tz + gy[i+1][j][k] * dx * ty * tz + gy[i][j+1][k] * tx * dy * tz + gy[i+1][j+1][k] * dx * dy * tz + 
+	gy[i][j][k+1] * tx * ty * dz + gy[i+1][j][k+1] * dx * ty * dz + gy[i][j+1][k+1] * tx * dy * dz + gy[i+1][j+1][k+1] * dx * dy * dz; 
+
+gzp = gz[i][j][k] * tx * ty * tz + gz[i+1][j][k] * dx * ty * tz + gz[i][j+1][k] * tx * dy * tz + gz[i+1][j+1][k] * dx * dy * tz + 
+	gz[i][j][k+1] * tx * ty * dz + gz[i+1][j][k+1] * dx * ty * dz + gz[i][j+1][k+1] * tx * dy * dz + gz[i+1][j+1][k+1] * dx * dy * dz; 
+
+
+gx = gx ttt+gx dtt+gx tdt+gx ddt+ p i,j,kxyz i+1,j,k xyz i,j+1,kx yz i+1,j+1,k x yz 
+gx t t d +gx d t d +gx t d d +gx d d d . i,j,k+1 x y z i+1,j,k+1 x y z i,j+1,k+1 x y z i+1,j+1,k+1 x y z 
+
+/* 3. update particle velocities */
+
+//research leapfrog integration, see https://en.wikipedia.org/wiki/Leapfrog_integration for updating positions and velocities 
+ 
+/* 4. update particle positions */ 
+
+// After updating particle positions and velocities, the code should do some useful I/O and then proceed to step n + 2.
+} 
