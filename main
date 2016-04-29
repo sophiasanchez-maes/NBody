@@ -1,0 +1,40 @@
+/* Include any necessary .h files, such as math.h, stdio.h, etc */ 
+#include <fftw3.h> 
+#include <stdio.h>
+#include <math.h>
+#include <stdlib.h>
+
+
+int main() { 
+/* 1. declarations of relevant variables */ 
+int npart; 		//number of particles 
+int grid; 		//number of grid cells
+
+/********** INSTANTIATE PARTICLE POSITIONS - note MONTE are often used? ASK!!****/ 
+// currently instantiated to 0! note: kind of useless since everything just stays in that gravitational hole 
+
+
+double x[npart] = {0}; 	//particle x coordinates in space  
+double y[npart] = {0}; 	//particle y coordinates in space
+double z[npart] = {0}; 	//particle z coordinates in space 
+
+
+/* 2. read in or setup initial conditions - currently manual sets the initial conditions - remember to create makefile later*/ 
+
+npart = 32^3;
+ngrid = 64^3; //denoted Nc in the write-up, this is the number of grid cells 
+
+/* 3. start loop over time steps */ /* 4. call cicInterpolate() */ 
+
+cicInterpolate(int ngrid, int npart, double *x, double *y, double *z, double ***rho)
+
+/* 5. call solvePoisson() */ 
+
+/* 6. write out data*/ 
+/* 7. call updateParticles() - Updates position, velocities for each particle */ 
+
+updateParticles(int ngrid, int npart, double a, double da, double *x, double *y, double *z, double *vx, double *vy, double *vz, double ***phi)
+
+/* end loop */ 
+
+} 
