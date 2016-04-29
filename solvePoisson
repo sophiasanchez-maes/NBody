@@ -1,0 +1,59 @@
+/*
+@sophiasm
+
+Solve poisson's equations and calculate acceleration field */ 
+
+void solvePoisson(double a, double ***rho, double ***phi, int ngrid) { 
+
+/* 1. declarations of relevant variables */
+
+
+phi[i-1][j][k] + phi[i+1][j][k] + phi[i][j-1][k] + phi[i][j+1][k] + phi[i][j][k-1] + phi[i][j][k+1] - 6 * phi[i][j][k] = (3 * omeganot)/(2 * a) * (rho[i][j][k] - 1)
+
+
+ /* 2. fourier transform rho into fourier space 
+
+We suggest looking to the fftw_plan_dft_r2c_3d() function for this transform. 
+Any fourier transform in fftw is then followed by the execution command. 
+For example: //􏰛 setup fftw plan pf = fftw_plan_dft_r2c_3d(ngrid, ngrid, ngrid, in, out, FFTW_ESTIMATE); 
+
+//􏰛 take fourier transform 
+fftw_execute(pf); 
+*/
+
+ /* 3. calculate green's function in fourier space */ 
+
+Len = Ng // box size in code units 
+//for component (l,m,n)
+kx = 2 * math.pi * l / Len ; 
+ky = 2 * math.pi * m / Len ; 
+kz = 2 * math.pi * n / Len ; 
+a = 9.8; 	// gravitational acceleration 
+
+//singularity at l=m=n=0 should be avoided by setting phi[0][0][0] = 0 
+
+phi[0][0][0] = 0 ; 
+
+G(k) = - (3*omeganot / (8*a)) * (math.sin(kx/2)^2 + math.sin(ky/2)^2 + math.sin(kz/2)^2)^(-1)
+
+// Given a density field d(r) in real space, we can solve for the gravitational potential by 
+// DENSITY FIELD - is rho 
+// performing the FFT to get d(k)
+
+/* DO THAT HERE*/ 
+
+// Then multiply every element in the d(k) field by the corresponding value of G(k) to get phi(k)
+
+
+/* 4. reverse transformation using fftw_plan_dft_c2r_3d() and fftw_execute() */ 
+
+} 
+
+
+
+//_________________________________NECESSARY INCLUDES 
+#include <stdio.h>
+#include <math.h>
+#include <complex.h>
+#include <fftw3.h>
+#include <stdlib.h>
